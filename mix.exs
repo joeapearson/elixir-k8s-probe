@@ -8,7 +8,7 @@ defmodule K8sProbe.MixProject do
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package(),
+      package: package()
     ]
   end
 
@@ -26,7 +26,8 @@ defmodule K8sProbe.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:plug_cowboy, "~> 2.3.0"}
+      {:plug_cowboy, "~> 2.3.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

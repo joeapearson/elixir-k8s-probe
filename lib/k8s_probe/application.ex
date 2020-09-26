@@ -5,7 +5,7 @@ defmodule K8sProbe.Application do
 
   ## Usage
 
-  ## Installation
+  ### Installation
 
   First, add `:k8s_probe` to your `mix.exs` dependencies like so:
 
@@ -37,7 +37,7 @@ defmodule K8sProbe.Application do
 
   Congratulations, you have a default probe up and running!
 
-  ## Customising the probe
+  ### Customising the probe
 
   This module ships with a completely minimal default probe that does nothing other than respond
   with a `200 OK`, regardless of the state of your application.
@@ -51,7 +51,8 @@ defmodule K8sProbe.Application do
         def liveness, do: :ok
       end
 
-  Each of the three probes must be a function that returns either `:ok` or `:error`.
+  Each of the three probes must be a function that returns either `:ok` or `:error`.  How you
+  implement your probe really depends on your application.
 
   Having written your probe, you can configure K8sProbe to use it in your configuration like so:
 
@@ -59,8 +60,8 @@ defmodule K8sProbe.Application do
 
   ## Configuration
 
-  Generally it's recommended to just use the default configuration; easier isn't it.  But if you
-  must then read on!
+  Generally it's recommended to just use the default configuration; easier isn't it!  But if you
+  must then read on...
 
   ### Port
 
@@ -95,9 +96,7 @@ defmodule K8sProbe.Application do
       # {K8sProbe.Worker, arg}
       Plug.Cowboy.child_spec(
         scheme: :http,
-        plug:
-          {K8sProbe.Endpoint,
-           [probe_module: Application.get_env(:k8s_probe, :probe_module, K8sProbe.DefaultProbe)]},
+        plug: {K8sProbe.Endpoint, [probe_module: Application.get_env(:k8s_probe, :probe_module, K8sProbe.DefaultProbe)]},
         options: [port: Application.get_env(:k8s_probe, :port)]
       )
     ]
