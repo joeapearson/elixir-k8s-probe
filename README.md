@@ -12,12 +12,14 @@ any project.
 
 First, add `:k8s_probe` to your `mix.exs` dependencies like so:
 
-    defp deps do
-      [
-        # … your other various dependencies
-        {:k8s_probe, "0.1.0"}
-      ]
-    end
+```elixir
+defp deps do
+  [
+    # … your other various dependencies
+    {:k8s_probe, "0.1.0"}
+  ]
+end
+```
 
 If necessary run `mix deps.get` and `mix deps.compile` at this point to fetch and compile
 K8sProbe.
@@ -49,18 +51,22 @@ with a `200 OK`, regardless of the state of your application.
 This might be fine for simple applications, but for a more detailed implementation you need to
 provide your own probe implementing the `K8sProbe.Probe` behaviour.  Here's an example:
 
-    defmodule MyApp.MyProbe do
-      @behaviour K8sProbe.Probe
-      def readiness, do: :ok
-      def liveness, do: :ok
-    end
+```elixir
+defmodule MyApp.MyProbe do
+  @behaviour K8sProbe.Probe
+  def readiness, do: :ok
+  def liveness, do: :ok
+end
+```
 
 Each of the three probes must be a function that returns either `:ok` or `:error`.  How you
 implement your probe really depends on your application.
 
 Having written your probe, you can configure K8sProbe to use it in your configuration like so:
 
-    config :k8s_probe, :probe_module, MyApp.MyProbe
+```elixir
+config :k8s_probe, :probe_module, MyApp.MyProbe
+```
 
 ## Configuration
 
@@ -71,16 +77,19 @@ must then read on...
 
 By default K8sProbe listens on port 9991.  You may override it in your configuration like so:
 
-    config :k8s_probe, port: 8080
+```elixir
+config :k8s_probe, port: 8080
+```
 
 ### Paths
 
 By default the probes listen at `/liveness` and `/readiness`.  You may customise these
 paths if you wish as follows:
 
-    config :k8s_probe, :liveness_path, "/my_liveness"
-    config :k8s_probe, :readiness_path, "/my_liveness"
-
+```elixir
+config :k8s_probe, :liveness_path, "/my_liveness"
+config :k8s_probe, :readiness_path, "/my_liveness"
+```
 
 ## Configuring probes in Kubernetes
 
