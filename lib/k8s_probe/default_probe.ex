@@ -6,7 +6,6 @@ defmodule K8sProbe.DefaultProbe do
 
   @behaviour K8sProbe.Probe
 
-  def health, do: :ok
   def liveness, do: :ok
   def readiness, do: :ok
 end

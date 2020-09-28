@@ -4,11 +4,12 @@ defmodule K8sProbe.MixProject do
   def project do
     [
       app: :k8s_probe,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package()
+      package: package(),
+      docs: docs()
     ]
   end
 
@@ -36,9 +37,24 @@ defmodule K8sProbe.MixProject do
   defp package do
     [
       description:
-        "Provides a Kubernetes liveness, readiness and health check endpoint, configurable with your own custom callbacks to suit the needs of your application.",
+        "Provides configurable HTTP liveness and readiness endpoints for supporting Kubernetes probes.",
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/joeapearson/elixir-k8s-probe"}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: [
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE"
+      ],
+      authors: [
+        "Joe Pearson"
+      ],
+      api_reference: false
     ]
   end
 end

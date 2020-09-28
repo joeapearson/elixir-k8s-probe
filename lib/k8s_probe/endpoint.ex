@@ -1,6 +1,6 @@
 defmodule K8sProbe.Endpoint do
   @moduledoc """
-  A plug responsible for handling kubernetes liveness, readiness and health check probe requests
+  A plug responsible for handling kubernetes liveness and readiness check probe requests.
   """
 
   use Plug.Router
@@ -10,15 +10,8 @@ defmodule K8sProbe.Endpoint do
   # :dispatch plug attaches builder_opts() which allows us to configure the plug
   plug(:dispatch, builder_opts())
 
-  @health_path Application.get_env(:k8s_probe, :health_path, "/health")
   @liveness_path Application.get_env(:k8s_probe, :liveness_path, "/liveness")
   @readiness_path Application.get_env(:k8s_probe, :readiness_path, "/readiness")
-
-  # Health endpoint
-  get @health_path do
-    probe = get_probe_module!(opts)
-    check_probe(conn, &probe.health/0)
-  end
 
   # Liveness endpoint
   get @liveness_path do
