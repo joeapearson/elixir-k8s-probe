@@ -25,7 +25,16 @@ If necessary run `mix deps.get` and `mix deps.compile` at this point to fetch an
 K8sProbe.
 
 Next, add `:k8s_probe` to your extra applications in `mix.exs` to have it be started along with the
-rest of your application.
+rest of your application:
+
+```elixir
+def application do
+  [
+    mod: {MyApp.Application, []},
+    extra_applications: [:logger, :runtime_tools, :k8s_probe]
+  ]
+end
+```
 
 Now you can try it out by launching your application and making a request to the probe endpoints
 as follows:
