@@ -29,8 +29,8 @@ Now you can try it out by launching your application and making a request to the
 as follows:
 
 ```sh
+# Start your app in iex
 $ iex -S mix
-… your app starts up
 
 # In another terminal
 $ curl localhost:9991/readiness
