@@ -10,17 +10,14 @@ defmodule K8sProbe.Endpoint do
   # :dispatch plug attaches builder_opts() which allows us to configure the plug
   plug(:dispatch, builder_opts())
 
-  @liveness_path Application.get_env(:k8s_probe, :liveness_path, "/liveness")
-  @readiness_path Application.get_env(:k8s_probe, :readiness_path, "/readiness")
-
   # Liveness endpoint
-  get @liveness_path do
+  get "/liveness" do
     probe = get_probe_module!(opts)
     check_probe(conn, &probe.liveness/0)
   end
 
   # Readiness endpoint
-  get @readiness_path do
+  get "/readiness" do
     probe = get_probe_module!(opts)
     check_probe(conn, &probe.readiness/0)
   end
