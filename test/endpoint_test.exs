@@ -1,13 +1,15 @@
-defmodule K8sProbe.Endpoint.Test do
+defmodule K8sProbe.EndpointTest do
   use ExUnit.Case, async: true
   use Plug.Test
 
   defmodule GoodProbe do
+    @behaviour K8sProbe.Probe
     def liveness, do: :ok
     def readiness, do: :ok
   end
 
   defmodule BadProbe do
+    @behaviour K8sProbe.Probe
     def liveness, do: :error
     def readiness, do: :error
   end

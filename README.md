@@ -22,7 +22,7 @@ end
 ```
 
 If necessary run `mix deps.get` and `mix deps.compile` at this point to fetch and compile
-K8sProbe.
+`K8sProbe`.
 
 Next, add `K8sProbe` to your supervision tree (perhaps in your `application.ex` file).  It would
 look something like this:
@@ -74,8 +74,8 @@ defmodule MyApp.MyProbe do
 end
 ```
 
-Each of the three probes must be a function that returns either `:ok` or `:error`.  How you
-implement your probe really depends on your application.
+Each of the probe functions must return either `:ok` or `:error`.  How you implement your probe
+really depends on your application.
 
 Having written your probe, you can configure K8sProbe to use it by passing it in the configuration.
 Here's what your `application.ex` file might look like:

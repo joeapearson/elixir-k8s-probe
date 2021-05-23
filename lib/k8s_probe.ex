@@ -8,7 +8,7 @@ defmodule K8sProbe do
     ],
     probe_module: [
       type: :atom,
-      default: K8sProbe.DefaultProbe
+      default: K8sProbe.Probe
     ]
   ]
 

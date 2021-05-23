@@ -1,7 +1,7 @@
 defmodule K8sProbe.MixProject do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @repo_url "https://github.com/joeapearson/elixir-k8s-probe"
 
   def project do
